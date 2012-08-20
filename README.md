@@ -1,4 +1,4 @@
-# dn-leaderboard [![build status][1]][2]
+# dn-leaderboard
 
 A leaderboard demo app for discovery-network
 
