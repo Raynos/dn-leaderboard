@@ -1,0 +1,37 @@
+{
+  "name": "dn-leaderboard",
+  "version": "0.0.1",
+  "description": "A leaderboard demo app for discovery-network",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/dn-leaderboard.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/dn-leaderboard",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/dn-leaderboard/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "yarnify": "~0.5.1",
+    "browserify-server": "~0.5.5",
+    "discovery-network": "~0.5.2",
+    "kv": "~0.5.8",
+    "crdt": "~1.7.1",
+    "mux-demux": "~3.2.1"
+  },
+  "devDependencies": {
+    "browserify-server": "~0.4.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/dn-leaderboard/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {}
+}
