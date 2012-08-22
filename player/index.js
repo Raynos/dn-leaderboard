@@ -1,32 +1,35 @@
-var yarn = require("./yarn")
+var html = require("./player")
+    , Fragment = require("fragment")
+    , EventEmitter = require("events").EventEmitter
+    , databind = require("data-bind")
 
 module.exports = Player
 
 function Player(row) {
-    var elem = yarn("player.html", ["player.css"])
-        , playerElem = elem.querySelector(".player")
-        , nameElem = elem.querySelector(".name")
-        , scoreElem = elem.querySelector(".score")
+    var elem = Fragment(html).firstChild
+        , widget = new EventEmitter()
 
-    row.on("update", render)
+    widget.id = row.id
+    widget.appendTo = appendTo
+    widget.select = select
+    widget.unselect = unselect
 
-    playerElem.addEventListener("click", incrementScore)
+    databind(elem, row)
 
-    render()
+    elem.addEventListener("click", emitSelected)
 
-    return {
-        appendTo: appendTo
+    return widget
+
+    function emitSelected() {
+        widget.emit("selected", widget)
     }
 
-    function render() {
-        nameElem.textContent = row.get("name")
-        scoreElem.textContent = row.get("score")
+    function select() {
+        elem.classList.add("selected")
     }
 
-    function incrementScore() {
-        var score = row.get("score")
-        score++
-        row.set("score", score)
+    function unselect() {
+        elem.classList.remove("selected")
     }
 
     function appendTo(parent) {

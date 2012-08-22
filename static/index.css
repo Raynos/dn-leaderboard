@@ -5,7 +5,54 @@ body {
     padding: 0;
     -webkit-user-select: none;
     -khtml-user-select: none;
+    -ms-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+}
+
+.player {
+    padding: 5px;
+}
+
+.name {
+    display: inline-block;
+    width: 300px;
+    font-size: 1.75em;
+}
+
+.score {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-size: 2em;
+    font-weight: bold;
+    color: #777;
+}
+
+.selected {
+    background-color: yellow;
+}
+
+.selected .score {
+    color: black;
+}
+
+.outer {
+    width: 600px;
+    margin: 0 auto;    
+}
+
+.details {
+    font-weight: bold;
+    font-size: 2em;
+    border-style: dashed none none none;
+    border-color: #ccc;
+    border-width: 4px;
+    margin: 50px 10px;
+    padding: 10px 0;
+}
+
+.none {
+    color: #777;
 }

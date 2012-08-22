@@ -1,15 +1,20 @@
-var yarn = require("./yarn")
+var html = require("./leaderboard")
+    , Fragment = require("fragment")
     , Player = require("../player")
+    , store = require("local-store")
+    , selected = store("selected-player")
 
 module.exports = LeaderBoard
 
 function LeaderBoard(doc) {
-    var elem = yarn("leaderboard.html", ["leaderboard.css"])
+    var elem = Fragment(html)
         , leaderBoardElem = elem.querySelector(".leaderboard")
-        , set = doc.createSet("type", "player")
-        , oldSelected = set.get()
+        , playerSet = doc.createSet("type", "player")
+        , oldSelected = selected.get("player")
 
-    set.on("add", addPlayer)
+    playerSet.forEach(addPlayer)
+
+    playerSet.on("add", addPlayer)
 
     return {
         appendTo: appendTo
@@ -18,6 +23,23 @@ function LeaderBoard(doc) {
     function addPlayer(obj) {
         var player = Player(obj)
         player.appendTo(leaderBoardElem)
+        player.on("selected", updateSelected)
+
+        if (obj.id === oldSelected) {
+            oldSelected = player
+            updateSelected(player)
+        }
+    }
+
+    function updateSelected(player) {
+        if (oldSelected && oldSelected.unselect) {
+            oldSelected.unselect()
+        }
+
+        oldSelected = player
+        player.select()
+
+        selected.set("player", player.id)
     }
 
     function appendTo(parent) {

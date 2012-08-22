@@ -5,26 +5,27 @@ var crdt = require("crdt")
 var boardDoc = new Doc()
     , keyValueStore = kv("dn-leaderboard")
 
-sync(boardDoc, 'board')
-
 window.doc = boardDoc
 
 module.exports = boardDoc
+module.exports.sync = sync
 
-function sync(doc, name) {
+function sync() {
+    var name = "board"
+
     keyValueStore.has(name, function (err) {
         if (err) {
-            doc.sync = true
+            boardDoc.sync = true
             return write()
         }
 
         var stream = keyValueStore.get(name)
-        stream.pipe(doc.createWriteStream())
+        stream.pipe(boardDoc.createWriteStream())
         stream.once("end", write)
     })
 
     function write() {
-        var readStream = doc.createReadStream({ end: false })
+        var readStream = boardDoc.createReadStream({ end: false })
 
         readStream.pipe(keyValueStore.put(name))
     }
