@@ -27,12 +27,14 @@
     "dom-walk": "0.0.1",
     "iterators": "~0.2.0",
     "live-reload": "0.0.1",
-    "data-bind": "~0.1.0",
-    "local-store": "~0.2.0"
+    "data-bind": "0.0.2",
+    "local-store": "~0.2.0",
+    "selectron": "0.0.1"
   },
   "devDependencies": {
     "browserify-server": "~1.0.0",
-    "local-store": "~0.1.0"
+    "local-store": "~0.1.0",
+    "sorta": "0.0.4"
   },
   "licenses": [
     {
